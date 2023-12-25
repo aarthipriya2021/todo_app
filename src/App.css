@@ -1,38 +1,126 @@
-.App {
+* {
+  background: #191919;
   text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input:focus {
+  outline: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  margin: 32px 0;
+  color: #fff;
+  font-size: 24px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.complete {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+.todoForm {
+  margin-bottom: 32px;
+}
+
+.addTodoInput,
+.updateTodoInput {
+  /* padding: 14px 32px 14px 16px; */
+  padding: 0 16px;
+  height: 54px;
+  width: 700px;
+  border-radius: 8px 0px 0px 8px;
+  border: none;
+  text-align: start;
+  font-size: 16px;
+  background: #262626;
+  color: #fff;
+}
+
+.addTodoInput,
+.updateTodoInput:focus {
+  border: none;
+}
+
+.updateTodoInput::placeholder {
+  color: #e2e2e2;
+}
+
+.addTodoBtn,
+.updateTodoBtn {
+  padding: 16px;
+  background: #ffe692;
+  color: #000000;
+  border: none;
+  border-radius: 0px 8px 8px 0px;
+  height: 52px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.updateTodoInput.edit {
+  border: 2px solid #149fff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.addTodoBtn.edit,
+.updateTodoBtn {
+  background: #6f72d6;
+  padding: 16px 22px;
+  cursor: pointer;
+}
+
+.todo-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.todoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px auto;
+  color: #fff;
+  width: 70%;
+  background: #262626;
+  border: 1px solid #333333;
+  padding: 16px;
+  border-radius: 8px;
+}
+.icons {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+  background-color: #262626;
+}
+
+.deleteIcon {
+  margin-right: 5px;
+  color: #fff;
+  background-color: #262626;
+}
+
+.deleteIcon:hover{
+  color: red;
+}
+
+.editIcon {
+  color: #fff;
+  background-color: #262626;
+}
+
+.editIcon:hover{
+  color: rgb(63, 169, 63);
+}
+
+.noTodoTxt {
+  font-size: 25px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 20px;
+  color: #ffe692;
 }
