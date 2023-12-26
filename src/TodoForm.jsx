@@ -19,6 +19,9 @@ const TodoForm = (props) => {
       id: Math.floor(Math.random() * 1000),
       text: input,
     });
+
+    // clear up the input after submitting
+    setInput("");
   };
 
   return (
@@ -50,7 +53,7 @@ const TodoForm = (props) => {
             ref={inputRef}
             onChange={handleChange}
           />
-          <button onClick={handleSubmit} className="addTodoBtn">
+          <button onClick={handleSubmit} className="addTodoBtn" disabled={!input} type="submit">
             Add Todo
           </button>
         </>

@@ -7,12 +7,13 @@ import noTaskImg from "./no-task.png";
 const TodoList = () => {
   
   const [todos, setTodos] = useState([]);
-
   // number of todos
   const todosQuantity = todos.length;
 
   // event handler for adding new todos
-  const addTodo = (todo) => {
+  const addTodo = (todo, event) => {
+
+    
 
     // regex for checking the character in input field
     if (!todo.text || /^\s*$/.test(todo.text)) {
@@ -22,7 +23,7 @@ const TodoList = () => {
     const newTodos = [todo, ...todos];
     setTodos(newTodos);
 
-    console.log("ADD: newTodos-", ...todos);
+
   };
 
   //  updating the existing todo
