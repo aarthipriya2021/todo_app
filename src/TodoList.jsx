@@ -5,17 +5,57 @@ import todoImg from "./todo.png";
 import noTaskImg from "./no-task.png";
 
 const TodoList = () => {
+  
   const [todos, setTodos] = useState([]);
 
+  // number of todos
   const todosQuantity = todos.length;
 
+  // event handler for adding new todos
   const addTodo = (todo) => {
-    const newTodos = [todo, ...todos];
 
+    // regex for checking the character in input field
+    if (!todo.text || /^\s*$/.test(todo.text)) {
+      return;
+    }
+    // snewTodos having spread operator taking all the previous todos along with new todo
+    const newTodos = [todo, ...todos];
     setTodos(newTodos);
 
-    // console.log("add todo");
-    // console.log(...todos);
+    console.log("ADD: newTodos-", ...todos);
+  };
+
+  //  updating the existing todo
+  const updateTodo = (todoId, newValue) => {
+
+    // regex for checking the character in input field
+    if (!newValue.text || /^\s*$/.test(newValue.text)) {
+      return;
+    }
+
+    // prev taking the prev state of todo using id and then it updates the new value of todo
+    setTodos((prev) =>
+      prev.map((item) => (item.id === todoId ? newValue : item))
+    );
+
+  };
+
+  //  if any task was completed we can strike
+  const completeTodo = (id) => {
+    let updateTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        todo.isComplete = !todo.isComplete;
+      }
+      return todo;
+    });
+    setTodos(updateTodos);
+
+  };
+
+  // remove one item from todo list
+  const removeTodo = (id) => {
+    const removedArr = [...todos].filter((todo) => todo.id !== id);
+    setTodos(removedArr);
   };
 
   useEffect(() => {
@@ -29,36 +69,13 @@ const TodoList = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  const updateTodo = (todoId, newValue) => {
-    setTodos((prev) =>
-      prev.map((item) => (item.id === todoId ? newValue : item))
-    );
-    // console.log("updateTodo");
-  };
-
-  const completeTodo = (id) => {
-    let updateTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        todo.isComplete = !todo.isComplete;
-      }
-      return todo;
-    });
-    setTodos(updateTodos);
-
-    // console.log("completeTodo");
-  };
-
-  const removeTodo = (id) => {
-    const removedArr = [...todos].filter((todo) => todo.id !== id);
-    setTodos(removedArr);
-    // console.log("removeTodo");
-  };
-
   return (
     <div>
       <img src={todoImg} alt="todo_img" style={{ width: "130px" }} />
       <div style={{ margin: "50px" }}>
         <TodoForm onSubmit={addTodo} />
+
+        {/* if there's no todo it shows one no task image */}
         {todosQuantity === 0 ? (
           <div>
             <img src={noTaskImg} alt="no-todo" width={150} />
